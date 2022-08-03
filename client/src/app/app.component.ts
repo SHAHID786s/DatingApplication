@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { User } from './_models/User';
+import { AccountService } from './_services/account.service';
 
 @Component({
   selector: 'app-root',
@@ -9,21 +11,16 @@ import { Component, OnInit } from '@angular/core';
 export class AppComponent implements OnInit {
   title = 'The Dating App';
   users: any;
-  constructor(private http: HttpClient) {
+  constructor(private accountService: AccountService) {
     //requesting data from API
   }
 
   //like another constructor
   ngOnInit() {
-    this.getUsers();
+    this.setCurrentUser();
   }
-
-  // the this prop holds all props to this AppComponent
-  //class e.g. this.title, this.users, this.onginit
-  getUsers() {
-    this.http.get('https://localhost:5001/api/users').subscribe({
-      next: (response) => (this.users = response),
-      error: (error) => console.log(error),
-    });
+  setCurrentUser() {
+    const user: User = JSON.parse(localStorage.getItem('user')); // because we stringified we have to parse to read the user obj
+    this.accountService.setCurrentUser(user); // pass the user which is now readable
   }
 }

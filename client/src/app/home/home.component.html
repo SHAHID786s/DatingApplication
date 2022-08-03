@@ -1,0 +1,20 @@
+<div class="container mt-5">
+    <div *ngIf="!registerMode">
+        <h1>Find your match</h1>
+        <p class = "lead"> Come and see you matches .. all you need to do is sign up!</p>
+        <div class="text-center">
+            <button (click)="registerToggle()" class="btn btn-primary btn-lrg mr-2">Register</button>
+            
+            <button class="btn btn-info btn-lrg ">Learn more</button>
+        </div>
+    </div>
+    <div class="container" *ngIf="registerMode" >
+        <div class="row justify-content-center">
+            <div class="col-4">
+                <!-- to pass props down to child componenet use square brackets for inputs to the component and round brakcets for outputs to component
+                $event is an Angular variable that is available when we want to get the event object from a button click.-->
+                <app-register (cancelRegister)="cancelRegisterMode($event)"></app-register>
+            </div>
+        </div>
+    </div>
+</div>
