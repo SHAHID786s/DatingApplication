@@ -11,7 +11,7 @@ export class AccountService {
   baseUrl = 'https://localhost:5001/api/';
 
   private currentUserSource = new ReplaySubject<User>(1); // stores user value and when someone subscribes it gives last value to  in this case as we used 1
-  currentUser$ = this.currentUserSource.asObservable(); // watches this object so components will be notified of any changes need to be calle in the html
+  currentUser$ = this.currentUserSource.asObservable(); // watches this object so components will be notified of any changes need to be called  in the html
 
   constructor(private http: HttpClient) {}
   //a method on the Observable interface that can be used to

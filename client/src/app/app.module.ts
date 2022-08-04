@@ -10,10 +10,25 @@ import { FormsModule } from '@angular/forms';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
+import { MemberListComponent } from './members/member-list/member-list.component';
+import { MemberDetailComponent } from './members/member-detail/member-detail.component';
+import { ListsComponent } from './lists/lists.component';
+import { MessagesComponent } from './messages/messages.component';
+import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './shared.module';
 
 //declares all components for our application
 @NgModule({
-  declarations: [AppComponent, NavComponent, HomeComponent, RegisterComponent],
+  declarations: [
+    AppComponent,
+    NavComponent,
+    HomeComponent,
+    RegisterComponent,
+    MemberListComponent,
+    MemberDetailComponent,
+    ListsComponent,
+    MessagesComponent,
+  ],
   //
   imports: [
     BrowserModule,
@@ -21,7 +36,7 @@ import { RegisterComponent } from './register/register.component';
     HttpClientModule, // to fetch data from API
     BrowserAnimationsModule,
     FormsModule,
-    BsDropdownModule.forRoot(), // for root means it needs to intialise some services
+    SharedModule,
   ],
   providers: [],
   bootstrap: [AppComponent], // set of componenets we are bootstrapping

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { AccountService } from '../_services/account.service';
 
 @Component({
@@ -12,7 +13,10 @@ export class RegisterComponent implements OnInit {
   @Output() cancelRegister = new EventEmitter(); // we want to chnage the registerMode property to chnage the display when the cancel button is clicked therefore we emit a value of false in the cancel() function
   model: any = {};
 
-  constructor(private accountservices: AccountService) {}
+  constructor(
+    private accountservices: AccountService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {}
 
@@ -22,7 +26,10 @@ export class RegisterComponent implements OnInit {
         console.log(res);
         this.cancel();
       },
-      (error) => console.log(error)
+      (error) => {
+        console.log(error);
+        this.toastr.error(error.error);
+      }
     );
   }
 
